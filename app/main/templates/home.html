@@ -1,0 +1,53 @@
+<ion-view hide-nav-bar="true">
+  <!--<div style="width: 100%; position: fixed; top:0; z-index: 1000">-->
+
+    <!--&lt;!&ndash;logo&ndash;&gt;-->
+    <!--&lt;!&ndash;event types&ndash;&gt;-->
+    <!--<div ng-include="'main/templates/event_types_pane.html'" class="toolbar-holder"></div>-->
+    <!--&lt;!&ndash;calendar panel&ndash;&gt;-->
+    <!--<div ng-include="'main/templates/calendar_pane.html'" ng-controller="CalendarCtrl as ctrl" class="toolbar-holder"></div>-->
+
+  <!--</div>-->
+
+  <ion-content>
+    <div style="width: 100%; z-index: 1001">
+
+      <!--logo-->
+      <div ng-include="'main/templates/logo_toolbar.html'" class="toolbar-holder"></div>
+      <!--event types-->
+      <div ng-include="'main/templates/event_types_pane.html'" class="toolbar-holder"></div>
+      <!--calendar panel-->
+      <div ng-include="'main/templates/calendar_pane.html'" ng-controller="CalendarCtrl as ctrl" class="toolbar-holder"></div>
+
+    </div>
+
+    <!--refreshener-->
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="ctrl.doRefresh()">
+    </ion-refresher>
+    <!--event list-->
+    <ion-list>
+      <ion-item class="item-icon-right item-thumbnail-right"
+                href="#/details/{{event._id}}"
+                ng-repeat="event in ctrl.events">
+
+        <img ng-src="{{event.eventImage}}" style="margin-right:7%"/>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <h2>{{event.name}}</h2>
+        <h3>{{event.startDate}}</h3>
+        <h3>{{event.location.name}}</h3>
+        <p>{{event.url}}</p>
+
+      </ion-item>
+    </ion-list>
+    <!--scrolling-->
+    <ion-infinite-scroll
+      ng-if="ctrl.moreDataCanBeLoaded"
+      icon="ion-loading-c"
+      on-infinite="ctrl.loadMore()"
+      distance="1%">
+    </ion-infinite-scroll>
+
+  </ion-content>
+</ion-view>

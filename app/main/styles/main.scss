@@ -1,0 +1,200 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+*/
+
+//colors
+$light: #fff !default;
+$stable: #f8f8f8 !default;
+$positive: #4a87ee !default;
+$calm: #43cee6 !default;
+$balanced: #66cc33 !default;
+$energized: #f0b840 !default;
+$assertive: #ef4e3a !default;
+$royal: #8a6de9 !default;
+$dark: #444 !default;
+$dark-red-background: #a32227;
+$dark-pink: #ed858a;
+$dark-red-hr: #871a1d;
+$dark-red-hr-selected: #570509;
+
+//svg
+$svg-folder: "../assets/svgs/";
+$white-stars-svg: "whiteDots_stars_header.svg#Layer_1_copy_3";
+$item-default-active-bg:  $dark-red-background;
+
+// The path for our ionicons font files, relative to the built & temporary main.css
+$ionicons-font-path: "../assets/fonts" !default;
+$fa-font-path: "../assets/fonts" !default;
+
+// Include all of Ionic
+
+@import "../../bower_components/ionic/scss/ionic";
+@import "../../bower_components/font-awesome/scss/font-awesome";
+
+.toolbar-holder {
+  background-color: $dark-red-background;
+  color: $light;
+}
+
+.toolbar-background {
+  background-image: url($svg-folder + $white-stars-svg), none;
+  font-size: 2.5em;
+  font-family: Arial;
+  max-height: 100%;
+}
+
+.bar .title i {
+  padding: 0 20px 0 20px;
+}
+
+.button-icon {
+  color: $light;
+  margin-left: 10px;
+}
+
+.toolbar-holder a.disabled {
+  pointer-events: none;
+  color: $dark-pink;
+}
+
+//events
+.event-types-pane {
+  color: $dark-pink;
+  font-size: 1em;
+  font-family: Arial;
+  text-align: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 35px;
+  padding: 0;
+  li {
+    flex: 1;
+    padding: 5px 0 5px 0;
+    border-bottom: 5px solid $dark-red-hr;
+    cursor: pointer;
+  }
+}
+
+.event-types-pane li.selected {
+  color: $light;
+  border-bottom-color: $dark-red-hr-selected;
+}
+
+.events-list-items-wrapper {
+  text-align: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 255px;
+  border-bottom: 1px solid $dark-red-hr;
+  justify-content: space-around;
+  .events-list-items-left {
+    flex: 1;
+
+  }
+  .events-list-items-right {
+    flex: 1;
+    img {
+      height: 100px;
+    }
+  }
+}
+
+.item-icon-right .icon-accessory {
+  color: #444;
+}
+
+.item h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 22%;
+}
+
+.item h3 {
+  margin-right: 22%;
+}
+
+.item p {
+  margin-right: 22%;
+}
+
+.item {
+  border-color: $dark-red-background;
+  border-width: 0 0 3px 0;
+}
+
+//calendar
+.calendar-pane {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 35px;
+  display: inline-flex;
+  padding: 0;
+  font-size: 0.9em;
+  li {
+    flex: 1;
+    cursor: pointer;
+    padding: 6px;
+  }
+}
+
+.calendar-input {
+  background-color: $light;
+  color: $dark-pink;
+  font-family: Arial;
+  border-color: $dark-red-background;
+  border-style: solid;
+  border-width: 2px 0 2px 2px;
+  display: inline-flex;
+
+  flex-direction: row;
+  .calendar-input-text {
+    flex: 1;
+    justify-content: flex-start;
+  }
+  .icon {
+    font-size: 1.5em;
+    color: $dark-red-background;
+  }
+
+}
+
+.calendar-search {
+  background-color: $dark-red-background;
+  color: $light;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.calendar-search .icon {
+  font-size: 1.6em;
+  font-weight: 100;
+}
+
+.icon-rotate-90 {
+  transform: rotate(90deg);
+}
+
+//date picker
+.dateError {
+  background-color: $energized;
+}
+
+//details
+.webPage {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #EAAB00;
+  padding: 1rem;
+}
+
+
+
+

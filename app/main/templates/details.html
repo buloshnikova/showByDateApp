@@ -1,0 +1,15 @@
+<ion-view hide-nav-bar="false">
+  <ion-content>
+    <ion-item class="item-remove-animate item-thumbnail-left"
+              href="{{event.url}}">
+      <img ng-src="{{event.eventImage}}" />
+      <h2>{{event.name}}</h2>
+      <p>{{event.startDate}}</p>
+      <p>{{event.performer.name}}</p>
+      <p>{{event.location.streetAddress}}</p>
+      <a href="{event.url}">{{event.url}}</a>
+    </ion-item>
+    </iframe>
+  </ion-content>
+</ion-view>
+
