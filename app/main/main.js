@@ -31,6 +31,13 @@ main.config(function (
 
   });
 
+  $stateProvider.state('intro', {
+    url: '/intro',
+    templateUrl: 'main/templates/intro_main.html',
+    controller: 'IntroCtrl',
+    controllerAs: 'ctrl'
+  });
+
   $urlRouterProvider.otherwise('/');
 
   //blockUIConfig.message = 'Loading';
@@ -54,9 +61,6 @@ main.run(function ($ionicPlatform, Services) {
       StatusBar.styleDefault();
     }
     navigator.splashscreen.show();
-    //window.setTimeout(function () {
-    //  navigator.splashscreen.hide();
-    //}, 10000);
   });
   Services.initApp();
 });

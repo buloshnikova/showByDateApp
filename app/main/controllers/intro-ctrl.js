@@ -1,24 +1,19 @@
 'use strict';
 /*global main*/
 /*eslint no-undef: "error"*/
-main.controller('HomeCtrl', HomeCtrl);
-function HomeCtrl ($scope, Services, $rootScope) {
-  //splash
+main.controller('IntroCtrl', IntroCtrl);
+function HomeCtrl ($scope, $rootScope) {
+//splash
   $scope.$on('$ionicView.loaded', function () {
     ionic.Platform.ready(function () {
-      //if first time
-      //to to url=/intro
       if (navigator && navigator.splashscreen) {
         window.setTimeout(function () {
           navigator.splashscreen.hide();
-          //if first time
-          //to to url=/intro
         }, 500);
       }
     });
   });
-
-  this.Service = Services;
+  
   this.$rootScope = $rootScope;
   this.eventTypes = [
     {
@@ -48,25 +43,4 @@ function HomeCtrl ($scope, Services, $rootScope) {
     this.Service.setType(type.type);
   };
 
-  this.loadMore = function () {
-    this.Services.getEventsListFromServer();
-  };
-
-  this.doRefresh = function () {
-    this.Services.getEventsListFromServer();
-  };
-
-  this.$scope = $scope;
-  this.Services = Services;
-
 }
-Object.defineProperty(HomeCtrl.prototype, 'events', {
-  'get': function () {
-    return this.Services.getEventsList();
-  }
-});
-Object.defineProperty(HomeCtrl.prototype, 'moreDataCanBeLoaded', {
-  'get': function () {
-    return this.Services.moreDataCanBeLoaded();
-  }
-});
