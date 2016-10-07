@@ -5,7 +5,7 @@
 angular.module('main.services', [])
   .factory('Services', function ($http, $rootScope) {
     //var apiUrl = 'http://localhost:9000';
-    var apiUrl = 'http://10.100.102.6:9000';
+    var apiUrl = 'http://10.100.102.3:9000';
     var eventsList = [];
     var eventsTotal = -1;
     var currentEventType = 'MusicEvent';

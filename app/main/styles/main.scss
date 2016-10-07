@@ -195,6 +195,30 @@ $fa-font-path: "../assets/fonts" !default;
   padding: 1rem;
 }
 
+//onboard
+.slider-pager
+{
+  color: #000;
+}
+.slider-pager-page.active
+{
+  color: #fff;
+  stroke: #fff;
+}
+
+.slide1-toolbar {
+  font-size: 3.2em;
+  font-family: Arial;
+  max-height: 100%;
+}
+
+.slide1-body {
+  color: $dark-red-background;
+  font-size: 1.7em;
+  font-family: Arial;
+  max-height: 100%;
+}
+
 
 
 

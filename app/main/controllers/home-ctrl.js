@@ -6,13 +6,10 @@ function HomeCtrl ($scope, Services, $rootScope) {
   //splash
   $scope.$on('$ionicView.loaded', function () {
     ionic.Platform.ready(function () {
-      //if first time
-      //to to url=/intro
+
       if (navigator && navigator.splashscreen) {
         window.setTimeout(function () {
           navigator.splashscreen.hide();
-          //if first time
-          //to to url=/intro
         }, 500);
       }
     });
