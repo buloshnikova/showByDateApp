@@ -9,8 +9,10 @@
 
 main.controller('CalendarCtrl', CalendarCtrl);
 
-function CalendarCtrl ($scope, ionicDatePicker, Services) {
+function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
   var ctrl = this;
+  this.$location = $location;
+  this.path = this.$location.path();
   this.from = 'From';
   this.to = 'To';
   this.dates = {
@@ -72,6 +74,9 @@ function CalendarCtrl ($scope, ionicDatePicker, Services) {
         this.dates.dateTo.date !== null ? moment(this.dates.dateTo.date).valueOf() : null);
     } else {
       this.dates.dateFrom.valid = false;
+    }
+    if (this.path === '/intro') {
+      this.$location.path('/');
     }
   };
 

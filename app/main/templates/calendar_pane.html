@@ -7,7 +7,10 @@
     <span  class="calendar-input-text">{{ctrl.to}}</span>
     <i class="fa fa-calendar-o icon" aria-hidden="true"></i>
   </li>
-  <li class="calendar-search" ng-click="ctrl.getEvents()">
+  <li class="calendar-search" ng-click="ctrl.getEvents()" ng-if="ctrl.path != '/intro'">
     <i class="fa fa-search icon icon-rotate-90" aria-hidden="true"></i>
   </li>
 </ul>
+<div>
+<a ng-click="ctrl.getEvents()" class="intro-next-button" ng-if="ctrl.path == '/intro'">FIND EVENT ></a>
+</div>

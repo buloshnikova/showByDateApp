@@ -42,7 +42,7 @@ $fa-font-path: "../assets/fonts" !default;
 .toolbar-background {
   background-image: url($svg-folder + $white-stars-svg), none;
   font-size: 2.5em;
-  font-family: Arial;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   max-height: 100%;
 }
 
@@ -198,28 +198,71 @@ $fa-font-path: "../assets/fonts" !default;
 //onboard
 .slider-pager
 {
-  color: #000;
+  color: $dark;
 }
 .slider-pager-page.active
 {
-  color: #fff;
-  stroke: #fff;
+  color: $light;
+  stroke: $light;
+}
+
+.slide2 .slider-pager-page.active
+{
+  color: $dark;
+  stroke: $dark;
 }
 
 .slide1-toolbar {
-  font-size: 3.2em;
+  font-size: 3.3em;
   font-family: Arial;
   max-height: 100%;
 }
 
 .slide1-body {
   color: $dark-red-background;
-  font-size: 1.7em;
+  font-size: 1.6em;
   font-family: Arial;
   max-height: 100%;
 }
 
+.category-event-types {
+  color: $light;
+  background-color: $dark;
+  font-size: 1.3em;
+  font-family: Arial;
+  text-align: center;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 90%;
+  height: 50px;
+  padding: 0;
+  margin: 0px 5% 20px 5%;
+  li {
+    flex: 1;
+    padding: 12px 0;
+    border: 1px solid $light;
+    cursor: pointer;
+  }
+}
 
+.category-event-types li.selected {
+  color: $light;
+  background-color: $dark-red-background;
+}
 
+.intro-next-button {
+  color: $light;
+  font-size: 1.3em;
+  margin:10px 0;
+}
+
+.intro-buttons-wrapper {
+  position: absolute;
+  bottom:20px;
+  width: 100%;
+  height:100px;
+  text-align: center;
+}
 
 

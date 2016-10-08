@@ -3,6 +3,7 @@
 /*eslint no-undef: "error"*/
 main.controller('HomeCtrl', HomeCtrl);
 function HomeCtrl ($scope, Services, $rootScope) {
+
   //splash
   $scope.$on('$ionicView.loaded', function () {
     ionic.Platform.ready(function () {

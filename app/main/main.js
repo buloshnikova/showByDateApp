@@ -66,18 +66,21 @@ main.run(function ($ionicPlatform, Services, localStorageService, $location) {
     }
     //navigator.splashscreen.show();
     //onboard
-    console.log("start app")
     if (localStorageService.isSupported) {
-      if (localStorageService.get('notFirstTime') === true) { // change to null after testing
+      if (localStorageService.get('notFirstTime') !== true) { //todo:change to !==
         $location.path('/intro');
+      } else {
+        Services.initApp();
       }
     } else { //use cookie
-      if (localStorageService.cookie.get('notFirstTime') === true) { // change to null after testing
+      if (localStorageService.cookie.get('notFirstTime') !== true) {//todo:change to !==
         $location.path('/intro');
+      } else {
+        Services.initApp();
       }
     }
 
   });
-  Services.initApp();
+  //Services.initApp();
 });
 
