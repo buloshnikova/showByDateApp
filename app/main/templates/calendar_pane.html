@@ -1,11 +1,13 @@
 <ul class="calendar-pane">
   <li class="calendar-input" ng-click="ctrl.openDatePickerFrom()" ng-class="{dateError:!ctrl.dates.dateFrom.valid}">
     <span class="calendar-input-text">{{ctrl.from}}</span>
-      <i class="fa fa-calendar-o icon" aria-hidden="true"></i>
+    <i ng-if="ctrl.path == '/intro'" class="icon">></i>
+    <i ng-if="ctrl.path != '/intro'" class="fa fa-calendar-o icon" aria-hidden="true"></i>
   </li>
   <li class="calendar-input" ng-click="ctrl.openDatePickerTo()">
     <span  class="calendar-input-text">{{ctrl.to}}</span>
-    <i class="fa fa-calendar-o icon" aria-hidden="true"></i>
+    <i ng-if="ctrl.path == '/intro'" class="icon">></i>
+    <i ng-if="ctrl.path != '/intro'" class="fa fa-calendar-o icon" aria-hidden="true"></i>
   </li>
   <li class="calendar-search" ng-click="ctrl.getEvents()" ng-if="ctrl.path != '/intro'">
     <i class="fa fa-search icon icon-rotate-90" aria-hidden="true"></i>

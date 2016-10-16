@@ -6,11 +6,11 @@
 var main = angular.module('main', [
   'ionic',
   'main.services',
+  'main.typesobj',
   'ionic-datepicker',
   'LocalStorageModule'
   //'blockUI'
 ]);
-
 main.config(function ($stateProvider,
                       $urlRouterProvider,
                       localStorageServiceProvider
@@ -44,13 +44,14 @@ main.config(function ($stateProvider,
   localStorageServiceProvider
     .setPrefix('showByDateApp');
 
-  //blockUIConfig.message = 'Loading';
-
+  //blockUIConfig.delay = 0;
+  //blockUIConfig.templateUrl = 'main/templates/block-ui-overlay.html';
 
 });
 
 main.run(function ($ionicPlatform, Services, localStorageService, $location) {
   $ionicPlatform.ready(function () {
+
     if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -65,22 +66,18 @@ main.run(function ($ionicPlatform, Services, localStorageService, $location) {
       StatusBar.styleDefault();
     }
     //navigator.splashscreen.show();
+
     //onboard
     if (localStorageService.isSupported) {
-      if (localStorageService.get('notFirstTime') !== true) { //todo:change to !==
+      if (localStorageService.get('notFirstTime') === null || localStorageService.get('notFirstTime') !== true) {
         $location.path('/intro');
-      } else {
-        Services.initApp();
       }
     } else { //use cookie
-      if (localStorageService.cookie.get('notFirstTime') !== true) {//todo:change to !==
+      if (localStorageService.cookie.get('notFirstTime') === null || localStorageService.cookie.get('notFirstTime') !== true) {
         $location.path('/intro');
-      } else {
-        Services.initApp();
       }
     }
 
   });
-  //Services.initApp();
 });
 

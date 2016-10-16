@@ -1,32 +1,41 @@
 <ion-view hide-nav-bar="true">
-  <!--<div style="width: 100%; position: fixed; top:0; z-index: 1000">-->
+  <!--logo-->
+  <div id="topToolbar" >
+    <div id="logoToolbar" class="toolbar-holder transformable">
+      <!--ng-class="{small:ctrl.scrolled,big:!ctrl.scrolled}">-->
+      <svg viewBox="0 0 1000 220" class="toolbar-background" xmlns="http://www.w3.org/2000/svg">
+        <use xlink:href="main/assets/svgs/whiteDots_stars_header.svg#Layer_1_copy_3" x="-841" y="-339" width="2475"
+             height="2207"></use>
+        <use xlink:href="main/assets/svgs/LondonCityHeader.svg#London_BG_copy"></use>
+        <use xlink:href="main/assets/svgs/LOGO_header.svg#LOGO_copy" x="404" y="26"></use>
+        <text x="680" y="205" style="fill:#fff;">
+          <tspan>LONDON</tspan>
+        </text>
+      </svg>
+    </div>
 
-    <!--&lt;!&ndash;logo&ndash;&gt;-->
-    <!--&lt;!&ndash;event types&ndash;&gt;-->
-    <!--<div ng-include="'main/templates/event_types_pane.html'" class="toolbar-holder"></div>-->
-    <!--&lt;!&ndash;calendar panel&ndash;&gt;-->
-    <!--<div ng-include="'main/templates/calendar_pane.html'" ng-controller="CalendarCtrl as ctrl" class="toolbar-holder"></div>-->
+    <div id="searchMenu">
 
-  <!--</div>-->
-
-  <ion-content>
-    <div style="width: 100%; z-index: 1001">
-
-      <!--logo-->
-      <div ng-include="'main/templates/logo_toolbar.html'" class="toolbar-holder"></div>
       <!--event types-->
       <div ng-include="'main/templates/event_types_pane.html'" class="toolbar-holder"></div>
       <!--calendar panel-->
-      <div ng-include="'main/templates/calendar_pane.html'" ng-controller="CalendarCtrl as ctrl" class="toolbar-holder"></div>
+      <div ng-include="'main/templates/calendar_pane.html'" ng-controller="CalendarCtrl as ctrl"
+           class="toolbar-holder"></div>
 
     </div>
+  </div>
+
+  <ion-content id="content"
+               on-scroll="ctrl.onScrollContent()"
+               class="transformable-top">
 
     <!--refreshener-->
     <!--<ion-refresher-->
-      <!--pulling-text="Pull to refresh..."-->
-      <!--on-refresh="ctrl.doRefresh()">-->
+    <!--pulling-text="Pull to refresh..."-->
+    <!--on-refresh="ctrl.doRefresh()">-->
     <!--</ion-refresher>-->
     <!--event list-->
+    <!--<ion-list block-ui="ctrl.blockUIHome">-->
     <ion-list>
       <ion-item class="item-icon-right item-thumbnail-right"
                 href="#/details/{{event._id}}"

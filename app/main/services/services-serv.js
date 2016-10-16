@@ -3,15 +3,17 @@
 /*eslint no-unused-vars: 0*/
 /*eslint no-use-before-define: 0*/
 angular.module('main.services', [])
-  .factory('Services', function ($http, $rootScope) {
+  .factory('Services', function ($http, $rootScope, typesObj, $ionicLoading) {
     //var apiUrl = 'http://localhost:9000';
-    var apiUrl = 'http://10.100.102.3:9000';
+    var apiUrl = 'https://showbydatelondon.herokuapp.com';
     var eventsList = [];
     var eventsTotal = -1;
-    var currentEventType = 'MusicEvent';
+    var currentEventType = typesObj.getCurrentType().type;
     var dateFrom = moment().valueOf();
     var dateTo = moment().add(1, 'week').valueOf();
     var perPage = 10;
+    var dateFromText = null;
+    var dateToText = null;
 
     var clearData = function () {
       eventsList = [];
@@ -44,6 +46,12 @@ angular.module('main.services', [])
 
     var getEventsListFromServer = function () {
       console.log('getEventsListFromServer');
+      if (eventsList.length < 1) {
+        $ionicLoading.show({
+          templateUrl: 'main/templates/block-ui-overlay.html',
+          noBackdrop: true
+        });
+      }
       if (eventsList.length < eventsTotal || eventsTotal === -1) {
         $http.get(apiUrl +
             '/api/events/' +
@@ -53,10 +61,12 @@ angular.module('main.services', [])
             perPage + '/' +
             eventsList.length)
           .then(function (response) {
+            console.log(response.data.events);
             eventsList = eventsList.concat(response.data.events);
             eventsTotal = response.data.total;
             $rootScope.$broadcast('scroll.infiniteScrollComplete');
             $rootScope.$broadcast('scroll.refreshComplete');
+            $ionicLoading.hide();
           });
       } else {
         return;
@@ -72,42 +82,59 @@ angular.module('main.services', [])
       return eventsList;
     };
 
-    var setType = function (type) {
+    var setType = function (type, getEvents) {
       currentEventType = type;
-      clearData();
-      getEventsListFromServer();
+      if (getEvents) {
+        clearData();
+        getEventsListFromServer();
+      }
     };
+
+    // moved to types-obj-serv
+    //var getType = function () {
+    //  return currentEventType;
+    //};
+
     var setDates = function (from, to) {
       dateFrom = from;
       dateTo = to;
+      dateFromText = from;
+      dateToText = to;
       clearData();
       getEventsListFromServer();
     };
+
+    var setDateFrom = function (from) {
+      dateFrom = from;
+      dateFromText = from;
+    };
+
+    var setDateTo = function (to) {
+      dateTo = to;
+      dateToText = to;
+    };
+
+    var getFromDate = function () {
+      return (dateFromText !== null) ? dateFromText : null;
+    };
+
+    var getToDate = function () {
+      return (dateToText !== null) ? dateToText : null;
+    };
+
     return {
       initApp: initApp,
       getEventsList: getEventsList,
       getEventByID: getEventByID,
       setType: setType,
       setDates: setDates,
+      setDateFrom: setDateFrom,
+      setDateTo: setDateTo,
+      getFromDate: getFromDate,
+      getToDate: getToDate,
       getSiblingEvent: getSiblingEvent,
       getEventsListFromServer: getEventsListFromServer,
       moreDataCanBeLoaded: moreDataCanBeLoaded
-
-
-      //events: function () {
-      //  return $http.get(apiUrl + '/api/events/')
-      //    .then(function (response) {
-      //      eventsList = response.data;
-      //      return response.data;
-      //    });
-      //},
-      //
-      //getEvent: function (eventId) {
-      //  return $http.get(apiUrl + '/' + eventId)
-      //    .then(function (response) {
-      //      return response.data;
-      //    });
-      //}
 
     };
 

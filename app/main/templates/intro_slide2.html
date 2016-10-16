@@ -1,19 +1,22 @@
 <div>
+  <svg viewBox="0 0 1080 1920" class="slide1-toolbar">
+    <use viewBox="0 0 1080 1750" x="0" y="190" xlink:href="{{ctrl.templateTypeBGUrl}}"></use>
 
-  <svg viewBox="0 0 1080 1920" width="100%" height="100%" class="slide1-toolbar">
-    <!--<svg viewBox="0 0 1080 1719" x="0" y="150">-->
-    <use viewBox="0 0 1080 1750" x="0" y="180" xlink:href="{{ctrl.templateTypeBGUrl}}"></use>
-    <!--</svg>-->
+    <!--<image xlink:href="{{ctrl.templateTypeBGUrl}}" x="0" y="100" width="100%" height="100%"/>-->
 
-    <foreignobject x="45" y="105" width="545">Choose a category</foreignobject>
+    <!--<foreignobject x="45" y="105" width="545">Choose a category</foreignobject>-->
+    <text x="45" y="135" style="fill:#fff;" font-size="1.6em">
+      <tspan>Choose a category</tspan>
+    </text>
 
-    <use xlink:href="main/assets/svgs/LOGO_header.svg#LOGO_copy" x="755" y="65"></use>
-    <use xlink:href="main/assets/svgs/red_circles.svg#red_circles" x="0" y="130"></use>
+    <use xlink:href="main/assets/svgs/LOGO_header.svg#LOGO_copy" x="755" y="75"></use>
+    <use xlink:href="main/assets/svgs/red_circles.svg#red_circles" x="0" y="150"></use>
 
   </svg>
+
+
+</div>
 <div class="intro-buttons-wrapper">
   <div ng-include="'main/templates/intro_event_types.html'" ></div>
   <a ng-click="ctrl.goToCalendar()" class="intro-next-button">NEXT ></a>
-</div>
-
 </div>

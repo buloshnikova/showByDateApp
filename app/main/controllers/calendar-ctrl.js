@@ -10,11 +10,16 @@
 main.controller('CalendarCtrl', CalendarCtrl);
 
 function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
+
+  this.$scope = $scope;
+  this.Services = Services;
+
   var ctrl = this;
   this.$location = $location;
   this.path = this.$location.path();
-  this.from = 'From';
-  this.to = 'To';
+  this.iconsClasses = (this.path === '/intro') ? '' : '';
+  this.from = (this.Services.getFromDate() !== null) ? moment(this.Services.getFromDate()).format('DD-MM-YYYY') : 'From';
+  this.to = (this.Services.getToDate() !== null) ? moment(this.Services.getToDate()).format('DD-MM-YYYY') : 'To';
   this.dates = {
     dateFrom: {
       date: null,
@@ -35,13 +40,13 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
       ctrl.dateTo.inputDate = new Date(val);
       ctrl.dates.dateFrom.date = moment(val);
       ctrl.dates.dateFrom.valid = true;
+      ctrl.Services.setDateFrom(moment(val).valueOf());
     },
 
     from: new Date(), //Optional
     //to: new Date(2016, 10, 30), //Optional
     inputDate: new Date(),      //Optional
-    mondayFirst: true,          //Optional
-    disableWeekdays: [0],       //Optional
+    mondayFirst: true,         //Optional
     closeOnSelect: true,       //Optional
     templateType: 'modal'       //Optional
   };
@@ -50,13 +55,12 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
     callback: function (val) {  //Mandatory
       ctrl.to = moment(val).format('DD-MM-YYYY');
       ctrl.dates.dateTo.date = moment(val);
+      ctrl.Services.setDateTo(moment(val).valueOf());
     },
     //],
     from: new Date(), //Optional
-    //to: new Date(2016, 10, 30), //Optional
     inputDate: new Date(),      //Optional
     mondayFirst: true,          //Optional
-    disableWeekdays: [0],       //Optional
     closeOnSelect: true,       //Optional
     templateType: 'modal'       //Optional
   };
@@ -80,6 +84,4 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
     }
   };
 
-  this.$scope = $scope;
-  this.Services = Services;
 }

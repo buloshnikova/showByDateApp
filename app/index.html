@@ -35,15 +35,14 @@
         ng-click="goHome()">
         Back</ion-nav-back-button>
       <ion-nav-title>
-          <a href="#/details/{{prevEventId}}" ng-class="{disabled:prevEventId==-1}"><i class="ion-chevron-left" ></i></a>
-          <a href="#/details/{{nextEventId}}" ng-class="{disabled:nextEventId==-1}"><i class="ion-chevron-right"></i></a>
+          <a href="#/details/{{prevEventId}}" ng-class="{disabled:prevEventId==-1}" nav-direction="back"><i class="ion-chevron-left" ></i></a>
+          <a href="#/details/{{nextEventId}}" ng-class="{disabled:nextEventId==-1}" nav-direction="forward"><i class="ion-chevron-right"></i></a>
       </ion-nav-title>
     </ion-nav-bar>
     <!-- <ion-nav-bar> can be removed when using sidemenu (contained in menu.html) -->
 
     <ion-nav-view
       animation="slide-left-right"></ion-nav-view>
-
     <!-- will be a 404 during development uncomment for production-->
     <script src="cordova.js"></script>
 <!--test-->
@@ -70,16 +69,29 @@
 
     <!-- build:js scripts/app.js -->
     <!-- inject:js -->
+
+    <script src="main/services/types-obj-serv.js"></script>
+
     <script src="main/services/services-serv.js"></script>
+
     <script src="main/main.js"></script>
+
     <script src="main/services/home-provider-serv.js"></script>
+
     <script src="main/controllers/intro-ctrl.js"></script>
+
     <script src="main/controllers/home-ctrl.js"></script>
+
     <script src="main/controllers/details-nav-ctrl.js"></script>
+
     <script src="main/controllers/details-ctrl.js"></script>
+
     <script src="main/controllers/calendar-ctrl.js"></script>
+
     <script src="main/constants/config-const.js"></script>
+
     <script src="app.js"></script>
+
     <!-- endinject -->
     <!-- endbuild -->
   </body>
