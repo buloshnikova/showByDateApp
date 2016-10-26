@@ -36,7 +36,6 @@ function IntroCtrl ($scope, $rootScope, localStorageService, Services, $ionicHis
   };
   this.slideChanged = function (index) {
     var elem = document.getElementsByClassName('slider-pager')[0];
-    console.log(index);
     if (index === 1) {
       elem.style.display = 'none';
     } else {

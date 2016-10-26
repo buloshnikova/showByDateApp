@@ -27,7 +27,6 @@ angular.module('main.services', [])
       return evArr[0];
     };
     var initApp = function () {
-      console.log('tryINIT');
       getEventsListFromServer();
     };
 
@@ -45,7 +44,6 @@ angular.module('main.services', [])
     };
 
     var getEventsListFromServer = function () {
-      console.log('getEventsListFromServer');
       if (eventsList.length < 1) {
         $ionicLoading.show({
           templateUrl: 'main/templates/block-ui-overlay.html',
@@ -53,25 +51,29 @@ angular.module('main.services', [])
         });
       }
       if (eventsList.length < eventsTotal || eventsTotal === -1) {
-        console.log(apiUrl +
-          '/api/events/' +
-          dateFrom + '/' +
-          dateTo + '/' +
-          currentEventType + '/' +
-          perPage + '/' +
-          eventsList.length);
+        //console.log(apiUrl +
+        //  '/api/events/' +
+        //  dateFrom + '/' +
+        //  dateTo + '/' +
+        //  currentEventType + '/' +
+        //  perPage + '/' +
+        //  eventsList.length);
+        // format dates
+        var fromGMT = moment.tz(moment(dateFrom).format('YYYY-MM-DD HH:mm'), 'Europe/London').valueOf();
+        var toGMT = moment.tz(moment(dateTo).format('YYYY-MM-DD'), 'Europe/London');
+        toGMT = moment(toGMT).endOf('day').valueOf();
         $http.get(apiUrl +
             '/api/events/' +
-            dateFrom + '/' +
-            dateTo + '/' +
+            fromGMT + '/' +
+            toGMT + '/' +
             currentEventType + '/' +
             perPage + '/' +
             eventsList.length)
           .then(function (response) {
             eventsList = eventsList.concat(response.data.events);
             eventsTotal = response.data.total;
-            console.log(response.data.events);
-            console.log('eventsTotal ',eventsTotal);
+            //console.log(response.data.events);
+            //console.log('eventsTotal ',eventsTotal);
             $rootScope.$broadcast('scroll.infiniteScrollComplete');
             $rootScope.$broadcast('scroll.refreshComplete');
             $ionicLoading.hide();
