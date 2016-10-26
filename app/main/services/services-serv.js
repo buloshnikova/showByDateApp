@@ -53,6 +53,13 @@ angular.module('main.services', [])
         });
       }
       if (eventsList.length < eventsTotal || eventsTotal === -1) {
+        console.log(apiUrl +
+          '/api/events/' +
+          dateFrom + '/' +
+          dateTo + '/' +
+          currentEventType + '/' +
+          perPage + '/' +
+          eventsList.length);
         $http.get(apiUrl +
             '/api/events/' +
             dateFrom + '/' +
@@ -61,9 +68,10 @@ angular.module('main.services', [])
             perPage + '/' +
             eventsList.length)
           .then(function (response) {
-            console.log(response.data.events);
             eventsList = eventsList.concat(response.data.events);
             eventsTotal = response.data.total;
+            console.log(response.data.events);
+            console.log('eventsTotal ',eventsTotal);
             $rootScope.$broadcast('scroll.infiniteScrollComplete');
             $rootScope.$broadcast('scroll.refreshComplete');
             $ionicLoading.hide();
@@ -122,6 +130,7 @@ angular.module('main.services', [])
       return (dateToText !== null) ? dateToText : null;
     };
 
+
     return {
       initApp: initApp,
       getEventsList: getEventsList,
@@ -134,7 +143,8 @@ angular.module('main.services', [])
       getToDate: getToDate,
       getSiblingEvent: getSiblingEvent,
       getEventsListFromServer: getEventsListFromServer,
-      moreDataCanBeLoaded: moreDataCanBeLoaded
+      moreDataCanBeLoaded: moreDataCanBeLoaded,
+      clearData: clearData
 
     };
 

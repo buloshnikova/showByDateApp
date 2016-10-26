@@ -65,7 +65,7 @@ main.run(function ($ionicPlatform, Services, localStorageService, $location) {
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
-    //navigator.splashscreen.show();
+    navigator.splashscreen.show();
 
     //onboard
     if (localStorageService.isSupported) {

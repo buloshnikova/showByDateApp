@@ -2,7 +2,7 @@
 /*global main*/
 /*eslint no-undef: "error"*/
 main.controller('IntroCtrl', IntroCtrl);
-function IntroCtrl ($scope, $rootScope, localStorageService, Services, $ionicViewService, typesObj) {
+function IntroCtrl ($scope, $rootScope, localStorageService, Services, $ionicHistory, typesObj, $ionicLoading) {
 //splash
   $scope.$on('$ionicView.loaded', function () {
     if (localStorageService.isSupported) {
@@ -20,46 +20,18 @@ function IntroCtrl ($scope, $rootScope, localStorageService, Services, $ionicVie
       }
     });
   });
-  this.ionicViewService = $ionicViewService;
+  $ionicLoading.hide();
+
   this.$rootScope = $rootScope;
   this.Services = Services;
   this.typesObj = typesObj;
+  this.ionicHistory = $ionicHistory;
+  this.ionicHistory.clearHistory();
 
-  //this.ionicViewService.nextViewOptions({
-  //  disableBack: true
-  //});
-  // moved to types-obj-serv
-  //this.eventTypes = [
-  //  {
-  //    name: 'Music',
-  //    type: 'MusicEvent',
-  //    selected: true,
-  //    background: 'main/assets/svgs/category_bg_music.svg#bg_MUSIC'
-  //  },
-  //  {
-  //    name: 'Sport',
-  //    type: 'SportEvent',
-  //    selected: false,
-  //    background: 'main/assets/svgs/category_bg_sport.svg#bg_SPORT'
-  //  }, {
-  //    name: 'Theater',
-  //    type: 'TheaterEvent',
-  //    selected: false,
-  //    background: 'main/assets/svgs/category_bg_theater.svg#bg_Theatre'
-  //  }
-  //];
   this.switchType = function (type) {
-    //for (var i in this.eventTypes) {
-    //if (type.type === this.eventTypes[i].type) {
-    //  this.eventTypes[i].selected = true;
-    //  this.templateTypeBGUrl = this.eventTypes[i].background;
-    //  this.Services.setType(this.eventTypes[i].type, false);
-    //} else {
-    //  this.eventTypes[i].selected = false;
-    //}
+
     this.typesObj.setCurrentType(type);
-    this.Services.setType(type.type, true);
-    //}
+    this.Services.setType(type.type, false);
 
   };
   this.slideChanged = function (index) {

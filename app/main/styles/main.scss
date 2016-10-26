@@ -74,7 +74,6 @@ $fa-font-path: "../assets/fonts" !default;
   -o-transition: height 100ms linear;
   -ms-transition: height 100ms linear;
   transition: height 100ms linear;
-
 }
 .transformable-top {
   -webkit-transition: top 100ms linear;
@@ -82,7 +81,6 @@ $fa-font-path: "../assets/fonts" !default;
   -o-transition: top 100ms linear;
   -ms-transition: top 100ms linear;
   transition: top 100ms linear;
-
 }
 .small {
   height:0px;
@@ -134,8 +132,22 @@ $fa-font-path: "../assets/fonts" !default;
     flex: 1;
     img {
       height: 100px;
+      background: url('../assets/images/default_img.jpg') no-repeat center;
     }
   }
+}
+
+.item-thumbnail-right {
+    .item-thumbnail {
+      background: url('../assets/images/default_img.jpg') no-repeat center;
+      margin-right: 7%;
+      background-size: 100%;
+    }
+    .item-logo {
+      margin-right: 1%;
+      background-size: 100%;
+      margin-bottom: -3px;
+    }
 }
 
 .item-icon-right .icon-accessory {
@@ -161,6 +173,9 @@ $fa-font-path: "../assets/fonts" !default;
   border-width: 0 0 3px 0;
 }
 
+.item-complex .item-content {
+  padding: 8px 49px 8px 16px;
+}
 //calendar
 .calendar-pane {
   flex-direction: row;
@@ -247,6 +262,14 @@ $fa-font-path: "../assets/fonts" !default;
   font-size: 3.3em;
   //font-family: Arial;
   max-height: 100%;
+  image {
+    //background-image: url('../assets/images/london_Image_bg.jpg');
+    //background-repeat: no-repeat;
+    background-size: 100%;
+    //background-url: ('../assets/images/london_Image_bg.jpg');
+    width: auto;
+    height: 100%;
+  }
 }
 
 .slide1-body {
@@ -291,7 +314,7 @@ $fa-font-path: "../assets/fonts" !default;
 
 .intro-buttons-wrapper {
   position: fixed;
-  top:80%;
+  top: 70%;
   width: 100%;
   height:100px;
   text-align: center;

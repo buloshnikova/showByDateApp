@@ -6,6 +6,8 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
   var ctrl = this;
   this.$timeout = $timeout;
   this.iniLogoH = 0;
+  this.get_favicon = 'https://www.google.com/s2/favicons?domain_url=';
+
   //splash
   $scope.$on('$ionicView.loaded', function () {
     document.getElementById('logoToolbar');
@@ -13,7 +15,6 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
     ctrl.onScrollContent();
     ionic.Platform.ready(function () {
       if (navigator && navigator.splashscreen) {
-
         if (localStorageService.isSupported) {
           if (localStorageService.get('notFirstTime') === true) {
             window.setTimeout(function () {
@@ -35,7 +36,6 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
   this.ionicViewService = $ionicViewService;
   this.typesObj = typesObj;
   this.fixToolbar = false;
-  //var blockUIHome = blockUI.instances.get('blockUIHome');
 
   this.switchType = function (type) {
     //call set types

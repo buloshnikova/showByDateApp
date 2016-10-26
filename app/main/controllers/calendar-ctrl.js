@@ -17,71 +17,90 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
   var ctrl = this;
   this.$location = $location;
   this.path = this.$location.path();
-  this.iconsClasses = (this.path === '/intro') ? '' : '';
-  this.from = (this.Services.getFromDate() !== null) ? moment(this.Services.getFromDate()).format('DD-MM-YYYY') : 'From';
-  this.to = (this.Services.getToDate() !== null) ? moment(this.Services.getToDate()).format('DD-MM-YYYY') : 'To';
+
+  //this.dateTo = {
+  //  callback: function (val) {  //Mandatory
+  //
+  //    ctrl.Services.setDateTo(moment(val).valueOf());
+  //  },
+  //  from: new Date(), //Optional
+  //  inputDate: new Date(),      //Optional
+  //  mondayFirst: true,          //Optional
+  //  closeOnSelect: true,       //Optional
+  //  templateType: 'modal'       //Optional
+  //};
   this.dates = {
-    dateFrom: {
-      date: null,
-      valid: true
-    },
-    dateTo: {
-      date: null,
-      valid: true
-    }
+    dateFromValid: true,
+    dateToValid: true
   };
-
-  this.dateFrom = {
-    callback: function (val) {  //Mandatory
-      console.log('Return value from the datepicker popup is : ' + val, new Date(val));
-      ctrl.from = moment(val).format('DD-MM-YYYY');
-      ctrl.dateFrom.inputDate = new Date(val);
-      ctrl.dateTo.from = new Date(val);
-      ctrl.dateTo.inputDate = new Date(val);
-      ctrl.dates.dateFrom.date = moment(val);
-      ctrl.dates.dateFrom.valid = true;
-      ctrl.Services.setDateFrom(moment(val).valueOf());
-    },
-
-    from: new Date(), //Optional
-    //to: new Date(2016, 10, 30), //Optional
-    inputDate: new Date(),      //Optional
-    mondayFirst: true,         //Optional
-    closeOnSelect: true,       //Optional
-    templateType: 'modal'       //Optional
-  };
-
-  this.dateTo = {
-    callback: function (val) {  //Mandatory
-      ctrl.to = moment(val).format('DD-MM-YYYY');
-      ctrl.dates.dateTo.date = moment(val);
-      ctrl.Services.setDateTo(moment(val).valueOf());
-    },
-    //],
-    from: new Date(), //Optional
-    inputDate: new Date(),      //Optional
-    mondayFirst: true,          //Optional
-    closeOnSelect: true,       //Optional
-    templateType: 'modal'       //Optional
-  };
-
   this.openDatePickerFrom = function () {
-    ionicDatePicker.openDatePicker(ctrl.dateFrom);
+    ionicDatePicker.openDatePicker({
+      callback: function (val) {  //Mandatory
+        ctrl.dates.dateFromValid = true;
+        ctrl.Services.setDateFrom(val);
+        if (ctrl.dateToObj < val) {
+          ctrl.Services.setDateTo(val);
+        }
+      },
+      from: new Date(), //Optional
+      //to: new Date(2016, 10, 30), //Optional
+      inputDate: this.dateFromObj !== null ? new Date(this.dateFromObj) : new Date(),      //Optional
+      mondayFirst: true,         //Optional
+      closeOnSelect: true,       //Optional
+      templateType: 'modal'       //Optional
+    });
   };
   this.openDatePickerTo = function () {
-    ionicDatePicker.openDatePicker(ctrl.dateTo);
+    ionicDatePicker.openDatePicker({
+      callback: function (val) {  //Mandatory
+        //ctrl.Services.setDateTo(moment(val).valueOf());
+        ctrl.Services.setDateTo(val);
+      },
+      from: this.dateFromObj !== null ? new Date(this.dateFromObj) : new Date(), //Optional
+      inputDate: this.dateToObj !== null ? new Date(this.dateToObj) : new Date(),      //Optional
+      mondayFirst: true,          //Optional
+      closeOnSelect: true,       //Optional
+      templateType: 'modal'       //Optional
+    });
   };
 
   this.getEvents = function () {
-    if (this.dates.dateFrom.date !== null) {
-      this.Services.setDates(moment(this.dates.dateFrom.date).valueOf(),
-        this.dates.dateTo.date !== null ? moment(this.dates.dateTo.date).valueOf() : null);
+    if (this.dateFromObj !== null) {
+      if (this.path === '/intro') {
+        this.$location.path('/');
+      } else {
+        this.Services.clearData();
+        this.Services.getEventsListFromServer();
+      }
     } else {
-      this.dates.dateFrom.valid = false;
-    }
-    if (this.path === '/intro') {
-      this.$location.path('/');
+      this.dateFromValid = false;
     }
   };
 
 }
+
+Object.defineProperty(CalendarCtrl.prototype, 'dateFromObj', {
+  'get': function () {
+    return this.Services.getFromDate();
+  }
+});
+
+Object.defineProperty(CalendarCtrl.prototype, 'dateToObj', {
+  'get': function () {
+    return this.Services.getToDate();
+  }
+});
+
+Object.defineProperty(CalendarCtrl.prototype, 'dateFromText', {
+  'get': function () {
+    var from = (this.dateFromObj !== null) ? moment(this.dateFromObj).format('DD/MM/YYYY') : 'From';
+    return from;
+  }
+});
+
+Object.defineProperty(CalendarCtrl.prototype, 'dateToText', {
+  'get': function () {
+    var to = (this.dateToObj !== null) ? moment(this.dateToObj).format('DD/MM/YYYY') : 'To';
+    return to;
+  }
+});
