@@ -363,4 +363,15 @@ $fa-font-path: "../assets/fonts" !default;
   background-repeat:no-repeat;
   background-position-x: 50%;
 }
+@keyframes anim-rotate {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
 
+ion-infinite-scroll .icon{
+  animation: anim-rotate 1s infinite linear;
+}

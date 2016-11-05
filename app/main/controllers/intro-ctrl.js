@@ -1,6 +1,9 @@
 'use strict';
 /*global main*/
 /*eslint no-undef: "error"*/
+/*e/*eslint space-before-function-paren: ["error", "never"]*/
+/*global AdMob*/
+
 main.controller('IntroCtrl', IntroCtrl);
 function IntroCtrl ($scope, $rootScope, localStorageService, Services, $ionicHistory, typesObj, $ionicLoading) {
 //splash
@@ -27,6 +30,10 @@ function IntroCtrl ($scope, $rootScope, localStorageService, Services, $ionicHis
   this.typesObj = typesObj;
   this.ionicHistory = $ionicHistory;
   this.ionicHistory.clearHistory();
+
+  if (AdMob) {
+    AdMob.hideBanner();
+  }
 
   this.switchType = function (type) {
 

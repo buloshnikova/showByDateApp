@@ -2,6 +2,8 @@
 'use strict';
 /*global cordova StatusBar*/
 /*eslint no-undef: "error"*/
+/*global device*/
+/*global AdMob*/
 
 var main = angular.module('main', [
   'ionic',
@@ -52,6 +54,8 @@ main.config(function ($stateProvider,
 main.run(function ($ionicPlatform, Services, localStorageService, $location) {
   $ionicPlatform.ready(function () {
 
+    navigator.splashscreen.show();
+
     if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -65,8 +69,42 @@ main.run(function ($ionicPlatform, Services, localStorageService, $location) {
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
-    navigator.splashscreen.show();
+    // ADMOB
+    //if (window.plugins && window.plugins.AdMob) {
+    //  var admob_key = device.platform === 'Android' ? 'ca-app-pub-2592894677938639/9435006903' : 'ca-app-pub-2592894677938639/9435006903';
+    //  //var admob = window.plugins.AdMob;
+    //  //admob.createBannerView(
+    //  //  {
+    //  //    'publisherId': admob_key,
+    //  //    'adSize': admob.AD_SIZE.BANNER,
+    //  //    'bannerAtTop': false
+    //  //  },
+    //  //function () {
+    //  //  admob.requestAd(
+    //  //    {
+    //  //      'isTesting': false
+    //  //    },
+    //  //    function () {
+    //  //      admob.showAd(true);
+    //  //    },
+    //  //    function () {
+    //  //      console.log('Failed to request ad');
+    //  //    });
+    //  //},
+    //  //function () {
+    //  //  console.log('Failed to create banner view');
+    //  //});
+    //
+    //}
 
+    if (AdMob) {
+      var admob_key = device.platform === 'Android' ? 'ca-app-pub-2592894677938639/9435006903' : 'ca-app-pub-2592894677938639/9435006903';
+      AdMob.createBanner({
+        adId: admob_key,
+        position: AdMob.AD_POSITION.BOTTOM_CENTER,
+        autoShow: true
+      });
+    }
     //onboard
     if (localStorageService.isSupported) {
       if (localStorageService.get('notFirstTime') === null || localStorageService.get('notFirstTime') !== true) {

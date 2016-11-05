@@ -6,7 +6,7 @@
 /*global moment*/
 /*eslint no-use-before-define: ["error", { "functions": false }]*/
 /*eslint no-undef: "error"*/
-
+/*global AdMob*/
 main.controller('CalendarCtrl', CalendarCtrl);
 
 function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
@@ -67,6 +67,10 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
   this.getEvents = function () {
     if (this.dateFromObj !== null) {
       if (this.path === '/intro') {
+        if (AdMob) {
+          AdMob.showBanner(8);
+        }
+
         this.$location.path('/');
       } else {
         this.Services.clearData();

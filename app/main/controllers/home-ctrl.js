@@ -1,6 +1,7 @@
 'use strict';
 /*global main*/
 /*eslint no-undef: "error"*/
+
 main.controller('HomeCtrl', HomeCtrl);
 function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicViewService, typesObj, $ionicScrollDelegate, $timeout) {
   var ctrl = this;
@@ -11,7 +12,7 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
   //splash
   $scope.$on('$ionicView.loaded', function () {
     document.getElementById('logoToolbar');
-    ctrl.iniLogoH = document.getElementById('logoToolbar').clientHeight;
+    ctrl.iniLogoH = 80;//document.getElementById('logoToolbar').clientHeight;
     ctrl.onScrollContent();
     ionic.Platform.ready(function () {
       if (navigator && navigator.splashscreen) {
@@ -76,7 +77,11 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
     }
 
   };
+  //if (AdMob) {
+  //  AdMob.showBanner(8);
+  //}
 }
+
 Object.defineProperty(HomeCtrl.prototype, 'events', {
   'get': function () {
     return this.Services.getEventsList();
@@ -94,4 +99,8 @@ Object.defineProperty(HomeCtrl.prototype, 'eventTypes', {
   }
 });
 
-
+Object.defineProperty(HomeCtrl.prototype, 'loadingIcon', {
+  'get': function () {
+    return this.Services.getLoadingIcon();
+  }
+});

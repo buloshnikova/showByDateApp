@@ -15,6 +15,8 @@ angular.module('main.services', [])
     var dateFromText = null;
     var dateToText = null;
 
+    var loadingIcon = '';
+
     var clearData = function () {
       eventsList = [];
       eventsTotal = -1;
@@ -45,10 +47,13 @@ angular.module('main.services', [])
 
     var getEventsListFromServer = function () {
       if (eventsList.length < 1) {
+        loadingIcon = '';
         $ionicLoading.show({
           templateUrl: 'main/templates/block-ui-overlay.html',
           noBackdrop: true
         });
+      } else {
+        loadingIcon = 'ion-load-c';
       }
       if (eventsList.length < eventsTotal || eventsTotal === -1) {
         //console.log(apiUrl +
@@ -132,6 +137,9 @@ angular.module('main.services', [])
       return (dateToText !== null) ? dateToText : null;
     };
 
+    var getLoadingIcon = function () {
+      return loadingIcon;
+    };
 
     return {
       initApp: initApp,
@@ -146,8 +154,8 @@ angular.module('main.services', [])
       getSiblingEvent: getSiblingEvent,
       getEventsListFromServer: getEventsListFromServer,
       moreDataCanBeLoaded: moreDataCanBeLoaded,
-      clearData: clearData
-
+      clearData: clearData,
+      getLoadingIcon: getLoadingIcon
     };
 
 

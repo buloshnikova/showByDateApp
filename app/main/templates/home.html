@@ -55,7 +55,7 @@
     <!--scrolling-->
     <ion-infinite-scroll
       ng-if="ctrl.moreDataCanBeLoaded"
-      icon="ion-loading-c"
+      icon="{{ctrl.loadingIcon}}"
       on-infinite="ctrl.loadMore()"
       distance="1%">
     </ion-infinite-scroll>
