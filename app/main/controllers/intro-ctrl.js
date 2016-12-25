@@ -31,8 +31,19 @@ function IntroCtrl ($scope, $rootScope, localStorageService, Services, $ionicHis
   this.ionicHistory = $ionicHistory;
   this.ionicHistory.clearHistory();
 
-  if (AdMob) {
-    AdMob.hideBanner();
+  //try {
+  //  if (AdMob) {
+  //    AdMob.showBanner(8);
+  //  }
+  //} catch (error) {
+  //  console.log(error);
+  //}
+  try {
+    if (AdMob) {
+      AdMob.hideBanner();
+    }
+  } catch (error) {
+    console.log(error);
   }
 
   this.switchType = function (type) {

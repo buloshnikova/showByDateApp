@@ -60,5 +60,8 @@
       distance="1%">
     </ion-infinite-scroll>
 
+    <!--no data found-->
+    <div ng-if="ctrl.showNoData" ng-include="'main/templates/no-data.html'"></div>
+
   </ion-content>
 </ion-view>

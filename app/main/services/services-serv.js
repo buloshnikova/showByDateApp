@@ -16,6 +16,7 @@ angular.module('main.services', [])
     var dateToText = null;
 
     var loadingIcon = '';
+    var showNoData = false;
 
     var clearData = function () {
       eventsList = [];
@@ -46,6 +47,7 @@ angular.module('main.services', [])
     };
 
     var getEventsListFromServer = function () {
+      showNoData = false;
       if (eventsList.length < 1) {
         loadingIcon = '';
         $ionicLoading.show({
@@ -74,13 +76,24 @@ angular.module('main.services', [])
             currentEventType + '/' +
             perPage + '/' +
             eventsList.length)
-          .then(function (response) {
-            eventsList = eventsList.concat(response.data.events);
-            eventsTotal = response.data.total;
-            //console.log(response.data.events);
-            //console.log('eventsTotal ',eventsTotal);
-            $rootScope.$broadcast('scroll.infiniteScrollComplete');
-            $rootScope.$broadcast('scroll.refreshComplete');
+          .then(
+            //success
+            function (response) {
+              eventsList = eventsList.concat(response.data.events);
+              eventsTotal = response.data.total;
+              if (response.data.events.length === 0) {
+                showNoData = true;
+              }
+              //console.log(response.data.events);
+              //console.log('eventsTotal ',eventsTotal);
+              $rootScope.$broadcast('scroll.infiniteScrollComplete');
+              $rootScope.$broadcast('scroll.refreshComplete');
+              $ionicLoading.hide();
+            },
+          //error
+          function (error) {
+            eventsList.length = 0;
+            showNoData = true;
             $ionicLoading.hide();
           });
       } else {
@@ -104,11 +117,6 @@ angular.module('main.services', [])
         getEventsListFromServer();
       }
     };
-
-    // moved to types-obj-serv
-    //var getType = function () {
-    //  return currentEventType;
-    //};
 
     var setDates = function (from, to) {
       dateFrom = from;
@@ -141,6 +149,10 @@ angular.module('main.services', [])
       return loadingIcon;
     };
 
+    var getShowNoData = function () {
+      return showNoData;
+    };
+
     return {
       initApp: initApp,
       getEventsList: getEventsList,
@@ -155,7 +167,8 @@ angular.module('main.services', [])
       getEventsListFromServer: getEventsListFromServer,
       moreDataCanBeLoaded: moreDataCanBeLoaded,
       clearData: clearData,
-      getLoadingIcon: getLoadingIcon
+      getLoadingIcon: getLoadingIcon,
+      getShowNoData: getShowNoData
     };
 
 

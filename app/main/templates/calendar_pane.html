@@ -1,18 +1,31 @@
-<ul class="calendar-pane">
-  <li class="calendar-input" ng-click="ctrl.openDatePickerFrom()" ng-class="{dateError:!ctrl.dates.dateFromValid}">
-    <span class="calendar-input-text">{{ctrl.dateFromText}}</span>
-    <i ng-if="ctrl.path == '/intro'" class="icon">></i>
-    <i ng-if="ctrl.path != '/intro'" class="fa fa-calendar-o icon" aria-hidden="true"></i>
-  </li>
-  <li class="calendar-input" ng-click="ctrl.openDatePickerTo()">
-    <span  class="calendar-input-text">{{ctrl.dateToText}}</span>
-    <i ng-if="ctrl.path == '/intro'" class="icon">></i>
-    <i ng-if="ctrl.path != '/intro'" class="fa fa-calendar-o icon" aria-hidden="true"></i>
-  </li>
-  <li class="calendar-search" ng-click="ctrl.getEvents()" ng-if="ctrl.path != '/intro'">
-    <i class="fa fa-search icon icon-rotate-90" aria-hidden="true"></i>
-  </li>
-</ul>
 <div>
-<a ng-click="ctrl.getEvents()" class="intro-next-button" ng-if="ctrl.path == '/intro'">FIND EVENT ></a>
+  <ul ng-if="ctrl.path == '/intro'" class="calendar-pane">
+    <li class="calendar-input" ng-click="ctrl.getTodaysEvents()">
+      <span class="calendar-input-text">{{ctrl.dateTodayText}}</span>
+      <i class="icon">></i>
+    </li>
+    <li class="calendar-input" ng-click="ctrl.getWeekEvents()">
+      <span class="calendar-input-text">{{ctrl.dateWeekText}}</span>
+      <i class="icon">></i>
+    </li>
+  </ul>
+
+  <ul class="calendar-pane">
+    <li class="calendar-input" ng-click="ctrl.openDatePickerFrom()" ng-class="{dateError:!ctrl.dates.dateFromValid}">
+      <span class="calendar-input-text">{{ctrl.dateFromText}}</span>
+      <i ng-if="ctrl.path == '/intro'" class="icon">></i>
+      <i ng-if="ctrl.path != '/intro'" class="fa fa-calendar-o icon" aria-hidden="true"></i>
+    </li>
+    <li class="calendar-input" ng-click="ctrl.openDatePickerTo()">
+      <span class="calendar-input-text">{{ctrl.dateToText}}</span>
+      <i ng-if="ctrl.path == '/intro'" class="icon">></i>
+      <i ng-if="ctrl.path != '/intro'" class="fa fa-calendar-o icon" aria-hidden="true"></i>
+    </li>
+    <li class="calendar-search" ng-click="ctrl.getEvents()" ng-if="ctrl.path != '/intro'">
+      <i class="fa fa-search icon icon-rotate-90" aria-hidden="true"></i>
+    </li>
+  </ul>
+  <div>
+    <a ng-click="ctrl.getEvents()" class="intro-next-button" ng-if="ctrl.path == '/intro'">FIND EVENT ></a>
+  </div>
 </div>

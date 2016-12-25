@@ -17,6 +17,8 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
   var ctrl = this;
   this.$location = $location;
   this.path = this.$location.path();
+  this.dateTodayText = 'Today';
+  this.dateWeekText = 'This Week';
 
   //this.dateTo = {
   //  callback: function (val) {  //Mandatory
@@ -55,6 +57,9 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
       callback: function (val) {  //Mandatory
         //ctrl.Services.setDateTo(moment(val).valueOf());
         ctrl.Services.setDateTo(val);
+        if (ctrl.path === '/intro') {
+          ctrl.getEvents();
+        }
       },
       from: this.dateFromObj !== null ? new Date(this.dateFromObj) : new Date(), //Optional
       inputDate: this.dateToObj !== null ? new Date(this.dateToObj) : new Date(),      //Optional
@@ -67,8 +72,12 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
   this.getEvents = function () {
     if (this.dateFromObj !== null) {
       if (this.path === '/intro') {
-        if (AdMob) {
-          AdMob.showBanner(8);
+        try {
+          if (AdMob) {
+            AdMob.showBanner(8);
+          }
+        } catch (error) {
+          console.log(error);
         }
 
         this.$location.path('/');
@@ -81,6 +90,22 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
     }
   };
 
+  this.getTodaysEvents = function () {
+    ctrl.Services.setDateFrom(new Date());
+    ctrl.Services.setDateTo(new Date());
+    this.Services.clearData();
+    this.Services.getEventsListFromServer();
+    ctrl.getEvents();
+  };
+
+  this.getWeekEvents = function () {
+    var dateTo = moment().add(7,'day').toObject();
+    ctrl.Services.setDateFrom(new Date());
+    ctrl.Services.setDateTo(dateTo);
+    this.Services.clearData();
+    this.Services.getEventsListFromServer();
+    ctrl.getEvents();
+  };
 }
 
 Object.defineProperty(CalendarCtrl.prototype, 'dateFromObj', {

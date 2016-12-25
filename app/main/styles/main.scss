@@ -245,11 +245,16 @@ $fa-font-path: "../assets/fonts" !default;
 .slider-pager
 {
   color: $dark;
+  top: 350px;
 }
 .slider-pager-page.active
 {
   color: $light;
   stroke: $light;
+}
+
+.slide1 .slider-pager {
+  top: 380px;
 }
 
 .slide2 .slider-pager-page.active
@@ -260,10 +265,22 @@ $fa-font-path: "../assets/fonts" !default;
 
 .slide1-toolbar {
   font-size: 3.3em;
-  //font-family: Arial;
   max-height: 100%;
+  background: url('../assets/images/redbg_withstars.gif') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  //new style for intro
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   image {
-    //background-image: url('../assets/images/london_Image_bg.jpg');
+    //background-image: url('../assets/images/redbg_withstars.gif');
     //background-repeat: no-repeat;
     background-size: 100%;
     //background-url: ('../assets/images/london_Image_bg.jpg');
@@ -271,13 +288,17 @@ $fa-font-path: "../assets/fonts" !default;
     height: 100%;
   }
 }
-
+.slide1-footer {
+  margin-top:auto;
+}
+.slider {
+  height: 100%;
+}
 .slide1-body {
   color: $dark-red-background;
   font-size: 1.6em;
   //font-family: Arial;
   max-height: 50%;
-
 }
 
 .category-event-types {
@@ -310,6 +331,10 @@ $fa-font-path: "../assets/fonts" !default;
   color: $light;
   font-size: 1.3em;
   margin:10px 0;
+}
+
+.slide3 .intro-next-button {
+  display: none;
 }
 
 .intro-buttons-wrapper {
@@ -365,7 +390,7 @@ $fa-font-path: "../assets/fonts" !default;
 }
 @keyframes anim-rotate {
 	0% {
-		transform: rotate(0);
+		transform: rotate(0deg);
 	}
 	100% {
 		transform: rotate(360deg);
@@ -374,4 +399,14 @@ $fa-font-path: "../assets/fonts" !default;
 
 ion-infinite-scroll .icon{
   animation: anim-rotate 1s infinite linear;
+}
+
+//no data found
+.home-error-message{
+  background-color: $light !important;
+  color: $dark-red-background !important;
+  font-size: 1.3em;
+  text-align: center;
+  background-position-x: 50%;
+  margin-top: 15%;
 }

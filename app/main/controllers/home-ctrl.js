@@ -1,6 +1,7 @@
 'use strict';
 /*global main*/
 /*eslint no-undef: "error"*/
+/*global AdMob*/
 
 main.controller('HomeCtrl', HomeCtrl);
 function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicViewService, typesObj, $ionicScrollDelegate, $timeout) {
@@ -77,9 +78,13 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
     }
 
   };
-  //if (AdMob) {
-  //  AdMob.showBanner(8);
-  //}
+  try {
+    if (AdMob) {
+      AdMob.showBanner(8);
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 Object.defineProperty(HomeCtrl.prototype, 'events', {
@@ -102,5 +107,11 @@ Object.defineProperty(HomeCtrl.prototype, 'eventTypes', {
 Object.defineProperty(HomeCtrl.prototype, 'loadingIcon', {
   'get': function () {
     return this.Services.getLoadingIcon();
+  }
+});
+
+Object.defineProperty(HomeCtrl.prototype, 'showNoData', {
+  'get': function () {
+    return this.Services.getShowNoData();
   }
 });
