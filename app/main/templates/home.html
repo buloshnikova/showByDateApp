@@ -7,8 +7,8 @@
         <use xlink:href="main/assets/svgs/whiteDots_stars_header.svg#Layer_1_copy_3" x="-841" y="-339" width="2475"
              height="2207"></use>
         <use xlink:href="main/assets/svgs/LondonCityHeader.svg#London_BG_copy"></use>
-        <use xlink:href="main/assets/svgs/LOGO_header.svg#LOGO_copy" x="404" y="26"></use>
-        <text x="680" y="205" style="fill:#fff;">
+        <use xlink:href="main/assets/svgs/LOGO_header.svg#LOGO_copy" x="370" y="26"></use>
+        <text x="646" y="205" style="fill:#fff;">
           <tspan>LONDON</tspan>
         </text>
       </svg>
@@ -44,7 +44,8 @@
         <img class="item-thumbnail" ng-src="{{event.eventImage}}" />
         <i class="icon ion-chevron-right icon-accessory"></i>
         <h2>{{::(event.name)}}</h2>
-        <h3>{{::(event.startDate | date:"dd/MM/yyyy ' ' h:mma")}}</h3>
+        <!--<h3>{{::(event.startDate | date:"dd/MM/yyyy ' ' h:mma")}}</h3>-->
+        <h3>{{::(event.startDate )}}</h3>
         <h3>{{::(event.location.name)}}</h3>
         <p>
           <img class="item-logo" ng-src="{{ctrl.get_favicon}}{{::(event.url | domain)}}"/>

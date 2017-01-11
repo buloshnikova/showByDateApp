@@ -203,7 +203,7 @@ $fa-font-path: "../assets/fonts" !default;
   flex-direction: row;
   .calendar-input-text {
     flex: 1;
-    justify-content: flex-start;
+    text-align: center;
   }
   .icon {
     font-size: 1.5em;
@@ -311,7 +311,7 @@ $fa-font-path: "../assets/fonts" !default;
   flex-direction: row;
   flex-wrap: nowrap;
   width: 90%;
-  height: 50px;
+  //height: 50px;
   padding: 0;
   margin: 0px 5% 20px 5%;
   li {
@@ -384,7 +384,8 @@ $fa-font-path: "../assets/fonts" !default;
 .loading{
   background-color: $light !important;
   color: $dark-red-background !important;
-  background-image: url("../assets/images/loading_bar.png");
+  background-image: url("../assets/images/animated_bar.gif");
+  //background-image: url("../assets/images/loading_bar.png");
   background-repeat:no-repeat;
   background-position-x: 50%;
 }
@@ -410,3 +411,4 @@ ion-infinite-scroll .icon{
   background-position-x: 50%;
   margin-top: 15%;
 }
+

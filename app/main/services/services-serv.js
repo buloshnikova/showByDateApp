@@ -79,7 +79,7 @@ angular.module('main.services', [])
           .then(
             //success
             function (response) {
-              eventsList = eventsList.concat(response.data.events);
+              eventsList = eventsList.concat(filterEvents(response.data.events));
               eventsTotal = response.data.total;
               if (response.data.events.length === 0) {
                 showNoData = true;
@@ -151,6 +151,13 @@ angular.module('main.services', [])
 
     var getShowNoData = function () {
       return showNoData;
+    };
+
+    var filterEvents = function (events) {
+      for (var i in events) {
+        events[i].startDate = moment.tz(events[i].startDate,'Europe/London').format('DD/MM/YYYY h:mma');
+      }
+      return events;
     };
 
     return {
