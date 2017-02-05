@@ -27,7 +27,8 @@
 
   <ion-content id="content"
                on-scroll="ctrl.onScrollContent()"
-               class="transformable-top">
+               class="transformable-top"
+               on-swipe-left="ctrl.slideTab(1)" on-swipe-right="ctrl.slideTab(-1)">
 
     <!--refreshener-->
     <!--<ion-refresher-->
@@ -63,6 +64,5 @@
 
     <!--no data found-->
     <div ng-if="ctrl.showNoData" ng-include="'main/templates/no-data.html'"></div>
-
   </ion-content>
 </ion-view>

@@ -85,6 +85,15 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
   } catch (error) {
     console.log(error);
   }
+  //swipe on page content to change an event type
+  this.slideTab = function (whereToSlide) {
+    var currentIndex = this.typesObj.getCurrentIndex();
+    this.typesObj.switchType(whereToSlide);
+    var nextIndex = this.typesObj.getCurrentIndex();
+    if (currentIndex !== nextIndex) {
+      this.Services.setType(this.typesObj.getCurrentType().type, true);
+    }
+  };
 }
 
 Object.defineProperty(HomeCtrl.prototype, 'events', {
