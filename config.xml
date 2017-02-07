@@ -42,7 +42,15 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-        <splash src="res/ios/default/splash.png" />
+        <splash src="res/ios/default/Default~iphone.png" width="320" height="480"/>
+        <splash src="res/ios/default/Default@2x~iphone.png" width="640" height="960"/>
+        <splash src="res/ios/default/Default-Portrait~ipad.png" width="768" height="1024"/>
+        <splash src="res/ios/default/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+        <splash src="res/ios/default/Default-Landscape~ipad.png" width="1024" height="768"/>
+        <splash src="res/ios/default/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
+        <splash src="res/ios/default/Default-568h@2x~iphone.png" width="640" height="1136"/>
+        <icon src="res/ios/default/icon@1x.png" width="60" height="60"/>
+        <icon src="res/ios/default/icon@2x.png"  width="120" height="120"/>
         <preference name="SplashScreenDelay" value="3000" />
         <preference name="FadeSplashScreen" value="false" />
         <preference name="ShowSplashScreenSpinner" value="false" />
