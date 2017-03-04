@@ -45,8 +45,7 @@
         <img class="item-thumbnail" ng-src="{{event.eventImage}}" />
         <i class="icon ion-chevron-right icon-accessory"></i>
         <h2>{{::(event.name)}}</h2>
-        <!--<h3>{{::(event.startDate | date:"dd/MM/yyyy ' ' h:mma")}}</h3>-->
-        <h3>{{::(event.startDate )}}</h3>
+        <h3>{{::(event.displayDate)}}</h3>
         <h3>{{::(event.location.name)}}</h3>
         <p>
           <img class="item-logo" ng-src="{{ctrl.get_favicon}}{{::(event.url | domain)}}"/>

@@ -154,8 +154,15 @@ angular.module('main.services', [])
     };
 
     var filterEvents = function (events) {
-      for (var i in events) {
-        events[i].startDate = moment.tz(events[i].startDate,'Europe/London').format('DD/MM/YYYY h:mma');
+      var formatStringType = (currentEventType === typesObj.getTypes()[1].type) ? 'DD/MM/YYYY' : 'DD/MM/YYYY h:mma';
+      if (currentEventType === typesObj.getTypes()[1].type) {
+        for (var i in events) {
+          events[i].displayDate = moment.tz(events[i].startDate, 'Europe/London').format(formatStringType) + ' - ' + moment.tz(events[i].endDate, 'Europe/London').format(formatStringType);
+        }
+      } else {
+        for (var j in events) {
+          events[j].displayDate = moment.tz(events[j].startDate, 'Europe/London').format(formatStringType);
+        }
       }
       return events;
     };

@@ -99,7 +99,7 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
   };
 
   this.getWeekEvents = function () {
-    var dateTo = moment().add(7,'day').toObject();
+    var dateTo = moment().add(7,'d');
     ctrl.Services.setDateFrom(new Date());
     ctrl.Services.setDateTo(dateTo);
     this.Services.clearData();
