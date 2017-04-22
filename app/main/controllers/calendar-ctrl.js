@@ -104,14 +104,24 @@ Object.defineProperty(CalendarCtrl.prototype, 'dateToObj', {
 
 Object.defineProperty(CalendarCtrl.prototype, 'dateFromText', {
   'get': function () {
-    var from = (this.dateFromObj !== null) ? moment(this.dateFromObj).format('DD/MM/YYYY') : 'From';
+    var from = '';
+    if (this.dateFromObj !== null) {
+      from = moment(this.dateFromObj).format('DD/MM/YYYY');
+    } else {
+      from = (this.path === '/') ? moment(new Date).format('DD/MM/YYYY') : 'From';
+    }
     return from;
   }
 });
 
 Object.defineProperty(CalendarCtrl.prototype, 'dateToText', {
   'get': function () {
-    var to = (this.dateToObj !== null) ? moment(this.dateToObj).format('DD/MM/YYYY') : 'To';
+    var to = '';
+    if (this.dateToObj !== null) {
+      to = moment(this.dateToObj).format('DD/MM/YYYY');
+    } else {
+      to = (this.path === '/') ? moment(new Date).format('DD/MM/YYYY') : 'To';
+    }
     return to;
   }
 });

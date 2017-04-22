@@ -12,19 +12,11 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
   //splash
   $scope.$on('$ionicView.loaded', function () {
     ionic.Platform.ready(function () {
-      if (navigator && navigator.splashscreen) { // TODO: change for a if (Services.firstTime() === true)
-        if (localStorageService.isSupported) {
-          if (localStorageService.get('notFirstTime') === true) {
-            window.setTimeout(function () {
-              navigator.splashscreen.hide();
-            }, 500);
-          }
-        } else { //use cookie
-          if (localStorageService.cookie.get('notFirstTime') === true) {
-            window.setTimeout(function () {
-              navigator.splashscreen.hide();
-            }, 500);
-          }
+      if (navigator && navigator.splashscreen) {
+        if (!Services.firstTime() === true) {
+          window.setTimeout(function () {
+            navigator.splashscreen.hide();
+          }, 500);
         }
       }
     });
