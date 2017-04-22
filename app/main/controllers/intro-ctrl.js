@@ -2,7 +2,6 @@
 /*global main*/
 /*eslint no-undef: "error"*/
 /*e/*eslint space-before-function-paren: ["error", "never"]*/
-/*global AdMob*/
 
 main.controller('IntroCtrl', IntroCtrl);
 function IntroCtrl ($scope, $rootScope, localStorageService, Services, $ionicHistory, typesObj, $ionicLoading) {
@@ -15,10 +14,8 @@ function IntroCtrl ($scope, $rootScope, localStorageService, Services, $ionicHis
     }
     ionic.Platform.ready(function () {
       if (navigator && navigator.splashscreen) {
-
         window.setTimeout(function () {
           navigator.splashscreen.hide();
-
         }, 500);
       }
     });
@@ -38,13 +35,13 @@ function IntroCtrl ($scope, $rootScope, localStorageService, Services, $ionicHis
   //} catch (error) {
   //  console.log(error);
   //}
-  try {
-    if (AdMob) {
-      AdMob.hideBanner();
-    }
-  } catch (error) {
-    console.log(error);
-  }
+  //try {
+  //  if (AdMob) {
+  //    AdMob.hideBanner();
+  //  }
+  //} catch (error) {
+  //  console.log(error);
+  //}
 
   this.switchType = function (type) {
 

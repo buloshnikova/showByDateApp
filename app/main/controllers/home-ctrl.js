@@ -1,7 +1,6 @@
 'use strict';
 /*global main*/
 /*eslint no-undef: "error"*/
-/*global AdMob*/
 
 main.controller('HomeCtrl', HomeCtrl);
 function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicViewService, typesObj, $ionicScrollDelegate, $timeout) {
@@ -12,11 +11,8 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
 
   //splash
   $scope.$on('$ionicView.loaded', function () {
-    document.getElementById('logoToolbar');
-    ctrl.iniLogoH = 80;//document.getElementById('logoToolbar').clientHeight;
-    ctrl.onScrollContent();
     ionic.Platform.ready(function () {
-      if (navigator && navigator.splashscreen) {
+      if (navigator && navigator.splashscreen) { // TODO: change for a if (Services.firstTime() === true)
         if (localStorageService.isSupported) {
           if (localStorageService.get('notFirstTime') === true) {
             window.setTimeout(function () {
@@ -32,6 +28,9 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
         }
       }
     });
+    document.getElementById('logoToolbar');
+    ctrl.iniLogoH = 80;//document.getElementById('logoToolbar').clientHeight;
+    ctrl.onScrollContent();
   });
   this.Services = Services;
   this.$rootScope = $rootScope;
@@ -78,13 +77,16 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
     }
 
   };
-  try {
-    if (AdMob) {
-      AdMob.showBanner(8);
-    }
-  } catch (error) {
-    console.log(error);
-  }
+
+  //AdMob
+  //try {
+  //  if (AdMob) {
+  //    AdMob.showBanner(8);
+  //  }
+  //} catch (error) {
+  //  console.log(error);
+  //}
+
   //swipe on page content to change an event type
   this.slideTab = function (whereToSlide) {
     var currentIndex = this.typesObj.getCurrentIndex();

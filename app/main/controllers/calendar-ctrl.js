@@ -6,7 +6,7 @@
 /*global moment*/
 /*eslint no-use-before-define: ["error", { "functions": false }]*/
 /*eslint no-undef: "error"*/
-/*global AdMob*/
+
 main.controller('CalendarCtrl', CalendarCtrl);
 
 function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
@@ -20,17 +20,6 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
   this.dateTodayText = 'Today';
   this.dateWeekText = 'This Week';
 
-  //this.dateTo = {
-  //  callback: function (val) {  //Mandatory
-  //
-  //    ctrl.Services.setDateTo(moment(val).valueOf());
-  //  },
-  //  from: new Date(), //Optional
-  //  inputDate: new Date(),      //Optional
-  //  mondayFirst: true,          //Optional
-  //  closeOnSelect: true,       //Optional
-  //  templateType: 'modal'       //Optional
-  //};
   this.dates = {
     dateFromValid: true,
     dateToValid: true
@@ -43,6 +32,7 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
         if (ctrl.dateToObj < val) {
           ctrl.Services.setDateTo(val);
         }
+
       },
       from: new Date(), //Optional
       //to: new Date(2016, 10, 30), //Optional
@@ -72,14 +62,6 @@ function CalendarCtrl ($scope, ionicDatePicker, Services, $location) {
   this.getEvents = function () {
     if (this.dateFromObj !== null) {
       if (this.path === '/intro') {
-        try {
-          if (AdMob) {
-            AdMob.showBanner(8);
-          }
-        } catch (error) {
-          console.log(error);
-        }
-
         this.$location.path('/');
       } else {
         this.Services.clearData();

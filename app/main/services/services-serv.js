@@ -3,7 +3,7 @@
 /*eslint no-unused-vars: 0*/
 /*eslint no-use-before-define: 0*/
 angular.module('main.services', [])
-  .factory('Services', function ($http, $rootScope, typesObj, $ionicLoading) {
+  .factory('Services', function ($http, $rootScope, typesObj, $ionicLoading, $location, localStorageService) {
     //var apiUrl = 'http://localhost:9000';
     var apiUrl = 'https://showbydatelondon.herokuapp.com';
     var eventsList = [];
@@ -48,7 +48,7 @@ angular.module('main.services', [])
 
     var getEventsListFromServer = function () {
       showNoData = false;
-      if (eventsList.length < 1) {
+      if (eventsList.length < 1 && !firstTime()) {
         loadingIcon = '';
         $ionicLoading.show({
           templateUrl: 'main/templates/block-ui-overlay.html',
@@ -167,6 +167,20 @@ angular.module('main.services', [])
       return events;
     };
 
+    var firstTime = function () {
+      if (localStorageService.isSupported) {
+        if (localStorageService.get('notFirstTime') === null || localStorageService.get('notFirstTime') !== true) {
+          return true;
+        }
+      } else { //use cookie
+        if (localStorageService.cookie.get('notFirstTime') === null || localStorageService.cookie.get('notFirstTime') !== true) {
+          return true;
+        }
+      }
+
+      return false;
+    };
+
     return {
       initApp: initApp,
       getEventsList: getEventsList,
@@ -182,7 +196,8 @@ angular.module('main.services', [])
       moreDataCanBeLoaded: moreDataCanBeLoaded,
       clearData: clearData,
       getLoadingIcon: getLoadingIcon,
-      getShowNoData: getShowNoData
+      getShowNoData: getShowNoData,
+      firstTime: firstTime
     };
 
 

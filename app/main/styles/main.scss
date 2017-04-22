@@ -19,6 +19,7 @@ $dark-red-background: #a32227;
 $dark-pink: #ed858a;
 $dark-red-hr: #871a1d;
 $dark-red-hr-selected: #570509;
+
 //svg
 $svg-folder: "../assets/svgs/";
 $white-stars-svg: "whiteDots_stars_header.svg#Layer_1_copy_3";
@@ -245,7 +246,7 @@ $fa-font-path: "../assets/fonts" !default;
 .slider-pager
 {
   color: $dark;
-  top: 350px;
+  top: 370px;
 }
 .slider-pager-page.active
 {
@@ -331,6 +332,7 @@ $fa-font-path: "../assets/fonts" !default;
   color: $light;
   font-size: 1.3em;
   margin:10px 0;
+  text-shadow: 0 0 5px $dark;
 }
 
 .slide3 .intro-next-button {
