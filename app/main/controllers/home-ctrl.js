@@ -11,6 +11,9 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
 
   //splash
   $scope.$on('$ionicView.loaded', function () {
+    document.getElementById('logoToolbar');
+    ctrl.iniLogoH = 80;//document.getElementById('logoToolbar').clientHeight;
+    ctrl.onScrollContent();
     ionic.Platform.ready(function () {
       if (navigator && navigator.splashscreen) {
         if (!Services.firstTime() === true) {
@@ -20,9 +23,7 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
         }
       }
     });
-    document.getElementById('logoToolbar');
-    ctrl.iniLogoH = 80;//document.getElementById('logoToolbar').clientHeight;
-    ctrl.onScrollContent();
+
   });
   this.Services = Services;
   this.$rootScope = $rootScope;
@@ -88,6 +89,7 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
       this.Services.setType(this.typesObj.getCurrentType().type, true);
     }
   };
+
 }
 
 Object.defineProperty(HomeCtrl.prototype, 'events', {
