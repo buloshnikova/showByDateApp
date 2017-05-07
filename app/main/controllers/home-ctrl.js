@@ -53,7 +53,7 @@ function HomeCtrl ($scope, Services, $rootScope, localStorageService, $ionicView
     var toolbarLogo = document.getElementById('logoToolbar');
     var content = document.getElementById('content');
     var searchMenu = document.getElementById('searchMenu');
-    if (this.$ionicScrollDelegate.getScrollPosition().top === 0) {
+    if (this.$ionicScrollDelegate.$getByHandle('handler').getScrollPosition().top === 0) {
       this.$timeout(function () {
         ctrl.scrolled = false;
         toolbarLogo.style.height = ctrl.iniLogoH + 'px';

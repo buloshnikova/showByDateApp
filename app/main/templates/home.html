@@ -28,7 +28,9 @@
   <ion-content id="content"
                on-scroll="ctrl.onScrollContent()"
                class="transformable-top"
-               on-swipe-left="ctrl.slideTab(1)" on-swipe-right="ctrl.slideTab(-1)">
+               on-swipe-left="ctrl.slideTab(1)"
+               on-swipe-right="ctrl.slideTab(-1)"
+               delegate-handle="handler">
 
     <!--refreshener-->
     <!--<ion-refresher-->

@@ -2,7 +2,7 @@
   "generator-m-ionic": {
     "answers": {
       "appName": "showByDateApp",
-      "appId": "com.showbydate.mobile",
+      "appId": "com.showbydate.mobile.london",
       "ionicCss": false,
       "bowerPackages": [
         "angular-dynamic-locale#~0.1.27",
